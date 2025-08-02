@@ -468,7 +468,7 @@ export default {
 }
 ```
 
-### <script setup>
+### `<script setup>`
 
 `<script setup>` 是在单文件组件 (SFC) 中使用组合式 API 的编译时语法糖。
 
