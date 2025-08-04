@@ -27,7 +27,7 @@
   border-right: none;
 }
 
-/* 代码块：重建行号右侧竖线 */
+/* 代码快：重建行号右侧竖线 */
 .vp-doc .line-numbers-wrapper::after {
   content: "";
   position: absolute;
