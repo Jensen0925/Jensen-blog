@@ -101,13 +101,16 @@ export default {
 
     // giscus配置
     giscusTalk({
-      repo: 'Yiov/vitepress-doc', //仓库
-      repoId: 'R_kgDOGYFl1A', //仓库ID
-      category: 'General', // 讨论分类
-      categoryId: 'DIC_kwDOGYFl1M4CayLN', //讨论分类ID
-      mapping: 'pathname',
-      inputPosition: 'bottom',
-      lang: 'zh-CN',
+      repo: 'Jensen0925/Jensen-blog',
+      repoId: 'R_kgDOPW-Lvw',
+      category: 'General', // 默认: `General`
+      categoryId: 'DIC_kwDOPW-Lv84CtscO',
+      mapping: 'pathname', // 默认: `pathname`
+      inputPosition: 'bottom', // 默认: `top`
+      lang: 'zh-CN', // 默认: `zh-CN`
+      lightTheme: 'light', // 默认: `light`
+      darkTheme: 'dark', // 默认: `transparent_dark`
+      loading: 'eager',
     },
       {
         frontmatter, route
