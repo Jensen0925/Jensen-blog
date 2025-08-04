@@ -9,6 +9,8 @@ React是由Facebook开发的JavaScript库，用于构建用户界面，特别是
 - [入门指南](/react/getting-started) - React基础、环境搭建、JSX语法等
 - [组件开发](/react/components) - 组件类型、生命周期、组件通信、组件复用等
 - [Hooks使用](/react/hooks) - useState、useEffect、useContext等Hooks的使用
+- [React 18 新特性](/react/react-18) - React 18 的新功能和改进
+- [React 19 新特性](/react/react-19) - React 19 的新功能和改进
 
 ## 为什么选择React？
 

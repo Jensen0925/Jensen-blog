@@ -9,6 +9,7 @@ Vue.js是一个渐进式JavaScript框架，用于构建用户界面。与其他�
 - [入门指南](/vue/getting-started) - Vue基础、安装方式、模板语法等
 - [组件开发](/vue/components) - 组件定义、注册、通信、插槽等
 - [组合式API](/vue/composition-api) - Vue 3的组合式API使用方法
+- [Vue 3.6 新特性](/vue/vue-3-6) - Vue 3.6 中的 Vapor 模式和新特性
 
 ## 为什么选择Vue？
 
