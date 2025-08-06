@@ -3,23 +3,25 @@
     "start_urls": [
         {
             "url": "http://nonobug.top",
-            "selectors_key": ""
+            "selectors_key": "default",  // 明确指定使用default选择器集
+            "tags": ["en"]  // 可选：标记语言，与lang配置对应
         }
     ],
     "stop_urls": [],
     "selectors": {
         "default": {
             "lvl0": {
-                "selector": "",
-                "default_value": "我的文档"
+                "selector": ".sidebar-heading.active",  // 匹配VitePress侧边栏激活的一级标题
+                "global": true,  // 全局选择器（跨页面生效）
+                "default_value": "我的文档"  // 默认标题
             },
-            "lvl1": ".content h1",
-            "lvl2": ".content h2",
-            "lvl3": ".content h3",
-            "lvl4": ".content h4",
-            "lvl5": ".content h5",
-            "lvl6": ".content h6",
-            "text": ".content p, .content li",
+            "lvl1": ".VPContent h1",  // VitePress正文区域的h1
+            "lvl2": ".VPContent h2",
+            "lvl3": ".VPContent h3",
+            "lvl4": ".VPContent h4",
+            "lvl5": ".VPContent h5",
+            "lvl6": ".VPContent h6",
+            "text": ".VPContent p, .VPContent li, .VPContent code",  // 包含代码块内容
             "lang": {
                 "selector": "/html/@lang",
                 "type": "xpath",
@@ -28,8 +30,8 @@
         }
     },
     "custom_settings": {
-        "attributesForFaceting": [
-            "lang"
-        ]
-    }
+        "attributesForFaceting": ["lang"]
+    },
+    "js_rendering": true,  // 启用JS渲染（关键：VitePress需要）
+    "allow_insecure": true  // 允许http（临时，建议尽快升级https）
 }
