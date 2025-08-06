@@ -10,10 +10,10 @@ export default defineConfig({
   title: "Jensen's Blog",
   description: "📝个人学习记录",
   rewrites,
+  //markdown配置
   markdown: {
     //行号显示
     lineNumbers: true,
-
     // toc显示一级标题
     toc: { level: [1, 2, 3] },
 
@@ -38,7 +38,6 @@ export default defineConfig({
         if (tokens[idx].tag === 'h1') htmlResult += `<ArticleMetadata />`
         return htmlResult
       },
-
         // 代码组中添加图片
         md.use((md) => {
           const defaultRender = md.render
@@ -63,7 +62,6 @@ export default defineConfig({
             // 返回渲染的内容
             return defaultContent
           }
-
           // 获取原始的 fence 渲染规则
           const defaultFence = md.renderer.rules.fence?.bind(md.renderer.rules) ?? ((...args) => args[0][args[1]].content);
 
@@ -71,13 +69,11 @@ export default defineConfig({
           md.renderer.rules.fence = (tokens, idx, options, env, self) => {
             const token = tokens[idx];
             const info = token.info.trim();
-
             // 判断是否为 md:img 类型的代码块
             if (info.includes('md:img')) {
               // 只渲染图片，不再渲染为代码块
               return `<div class="rendered-md">${md.render(token.content)}</div>`;
             }
-
             // 其他代码块按默认规则渲染（如 java, js 等）
             return defaultFence(tokens, idx, options, env, self);
           };
@@ -86,13 +82,28 @@ export default defineConfig({
       md.use(groupIconMdPlugin) //代码组图标
       md.use(markdownItTaskCheckbox) //todo
       md.use(MermaidMarkdown);
-
     }
 
   },
-  // vite: {
-
-  // },
+  vite: {
+    plugins: [
+      groupIconVitePlugin({
+        customIcon: {
+          ts: localIconLoader(import.meta.url, '../public/svg/typescript.svg'), //本地ts图标导入
+          md: localIconLoader(import.meta.url, '../public/svg/md.svg'), //markdown图标
+          css: localIconLoader(import.meta.url, '../public/svg/css.svg'), //css图标
+          js: 'logos:javascript', //js图标
+        },
+      }),
+      [MermaidPlugin()]
+    ] as any,
+    optimizeDeps: {
+      include: ['mermaid'],
+    },
+    ssr: {
+      noExternal: ['mermaid'],
+    },
+  },
   lastUpdated: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -106,9 +117,9 @@ export default defineConfig({
     // search: {
     //   provider: 'algolia',
     //   options: {
-    //     appId: '<Application ID>',
-    //     apiKey: '<Search-Only API Key>',
-    //     indexName: '<INDEX_NAME>',
+    //     appId: 'W2XXW64ZQ9',
+    //     apiKey: 'e14bf34c-dc2b-4371-ab11-a1ac8426446c',
+    //     indexName: 'DOCSEARCH',
     //     locales: {
     //       root: {
     //         placeholder: '搜索文档',

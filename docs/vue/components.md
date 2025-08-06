@@ -43,7 +43,19 @@ export default {
 
 #### 使用 `defineComponent` (Vue 3)
 
-```js
+::: code-group
+
+```vue [选项式 API]
+<template>
+  <div>
+    <h2>{{ title }}</h2>
+    <p>{{ message }}</p>
+    <p>Count: {{ count }}</p>
+    <button @click="increment">Increment</button>
+  </div>
+</template>
+
+<script>
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -63,13 +75,42 @@ export default defineComponent({
     }
   }
 })
+</script>
 ```
+
+```vue [组合式 API]
+<template>
+  <div>
+    <h2>{{ title }}</h2>
+    <p>{{ message }}</p>
+    <p>Count: {{ count }}</p>
+    <button @click="increment">Increment</button>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+defineProps({
+  title: String,
+  message: String
+})
+
+const count = ref(0)
+
+const increment = () => {
+  count.value++
+}
+</script>
+```
+
+:::
 
 ### 组件注册
 
 #### 全局注册
 
-```js
+```vue [main.js]
 import { createApp } from 'vue'
 import App from './App.vue'
 import MyComponent from './components/MyComponent.vue'
@@ -84,7 +125,16 @@ app.mount('#app')
 
 #### 局部注册
 
-```js
+::: code-group
+
+```vue [选项式 API]
+<template>
+  <div>
+    <MyComponent />
+  </div>
+</template>
+
+<script>
 import MyComponent from './components/MyComponent.vue'
 
 export default {
@@ -92,7 +142,22 @@ export default {
     MyComponent
   }
 }
+</script>
 ```
+
+```vue [组合式 API]
+<template>
+  <div>
+    <MyComponent />
+  </div>
+</template>
+
+<script setup>
+import MyComponent from './components/MyComponent.vue'
+</script>
+```
+
+:::
 
 ## 组件通信
 

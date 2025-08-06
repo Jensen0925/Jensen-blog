@@ -2,21 +2,22 @@
 
 ## 组件的类型
 
-### 函数组件
+### 函数组件 vs 类组件
 
-函数组件是最简单的 React 组件形式，它是一个接收 props 并返回 React 元素的 JavaScript 函数：
+::: code-group
 
-```jsx
+```react [函数组件]
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
+
+// 使用箭头函数
+const Welcome = (props) => {
+  return <h1>Hello, {props.name}</h1>;
+};
 ```
 
-### 类组件
-
-类组件是使用 ES6 类语法定义的组件：
-
-```jsx
+```react [类组件]
 import React, { Component } from 'react';
 
 class Welcome extends Component {
@@ -25,6 +26,8 @@ class Welcome extends Component {
   }
 }
 ```
+
+:::
 
 ## 组件的生命周期
 
@@ -58,7 +61,9 @@ class Welcome extends Component {
 
 通过 props 向子组件传递数据：
 
-```jsx
+::: code-group
+
+```react [函数组件]
 // 父组件
 function Parent() {
   const data = 'Hello from parent';
@@ -69,13 +74,39 @@ function Parent() {
 function Child(props) {
   return <p>{props.message}</p>;
 }
+
+// 使用解构赋值
+function Child({ message }) {
+  return <p>{message}</p>;
+}
 ```
+
+```react [类组件]
+// 父组件
+class Parent extends Component {
+  render() {
+    const data = 'Hello from parent';
+    return <Child message={data} />;
+  }
+}
+
+// 子组件
+class Child extends Component {
+  render() {
+    return <p>{this.props.message}</p>;
+  }
+}
+```
+
+:::
 
 ### 子组件向父组件传递数据
 
 通过回调函数向父组件传递数据：
 
-```jsx
+::: code-group
+
+```react [函数组件]
 // 父组件
 function Parent() {
   const handleChildData = (data) => {
@@ -86,21 +117,50 @@ function Parent() {
 }
 
 // 子组件
-function Child(props) {
+function Child({ onDataSend }) {
   const sendData = () => {
     const data = 'Hello from child';
-    props.onDataSend(data);
+    onDataSend(data);
   };
   
   return <button onClick={sendData}>Send Data to Parent</button>;
 }
 ```
 
+```react [类组件]
+// 父组件
+class Parent extends Component {
+  handleChildData = (data) => {
+    console.log('Data from child:', data);
+  };
+  
+  render() {
+    return <Child onDataSend={this.handleChildData} />;
+  }
+}
+
+// 子组件
+class Child extends Component {
+  sendData = () => {
+    const data = 'Hello from child';
+    this.props.onDataSend(data);
+  };
+  
+  render() {
+    return <button onClick={this.sendData}>Send Data to Parent</button>;
+  }
+}
+```
+
+:::
+
 ### 兄弟组件通信
 
 通过共同的父组件进行通信：
 
-```jsx
+```react
+import React, { useState } from 'react';
+
 function Parent() {
   const [data, setData] = useState('');
   
@@ -116,16 +176,16 @@ function Parent() {
   );
 }
 
-function ChildA(props) {
+function ChildA({ onDataSend }) {
   const sendData = () => {
-    props.onDataSend('Hello from ChildA');
+    onDataSend('Hello from ChildA');
   };
   
   return <button onClick={sendData}>Send Data</button>;
 }
 
-function ChildB(props) {
-  return <p>Data from ChildA: {props.receivedData}</p>;
+function ChildB({ receivedData }) {
+  return <p>Data from ChildA: {receivedData}</p>;
 }
 ```
 
@@ -135,7 +195,9 @@ function ChildB(props) {
 
 高阶组件是一个函数，接收一个组件并返回一个新组件：
 
-```jsx
+```react
+import React, { useEffect } from 'react';
+
 function withLogger(WrappedComponent) {
   return function WithLogger(props) {
     useEffect(() => {
@@ -149,19 +211,26 @@ function withLogger(WrappedComponent) {
   };
 }
 
-function MyComponent(props) {
-  return <div>Hello, {props.name}</div>;
+function MyComponent({ name }) {
+  return <div>Hello, {name}</div>;
 }
 
 const EnhancedComponent = withLogger(MyComponent);
+
+// 使用增强后的组件
+function App() {
+  return <EnhancedComponent name="World" />;
+}
 ```
 
 ### Render Props
 
 Render Props 是一种通过函数 prop 共享代码的技术：
 
-```jsx
-function MouseTracker(props) {
+```react
+import React, { useState } from 'react';
+
+function MouseTracker({ render }) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   
   const handleMouseMove = (event) => {
@@ -173,18 +242,28 @@ function MouseTracker(props) {
   
   return (
     <div onMouseMove={handleMouseMove}>
-      {props.render(position)}
+      {render(position)}
     </div>
   );
 }
 
 function App() {
   return (
-    <MouseTracker
-      render={position => (
-        <p>Mouse position: {position.x}, {position.y}</p>
-      )}
-    />
+    <div>
+      <h2>Render Props 示例</h2>
+      <MouseTracker
+        render={position => (
+          <p>Mouse position: {position.x}, {position.y}</p>
+        )}
+      />
+      
+      {/* 也可以使用 children 作为 render prop */}
+      <MouseTracker>
+        {position => (
+          <h3>鼠标坐标: ({position.x}, {position.y})</h3>
+        )}
+      </MouseTracker>
+    </div>
   );
 }
 ```
@@ -193,7 +272,10 @@ function App() {
 
 自定义 Hooks 是一种在组件之间复用状态逻辑的方式：
 
-```jsx
+```react
+import React, { useState, useEffect } from 'react';
+
+// 自定义 Hook：鼠标位置追踪
 function useMousePosition() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   
@@ -215,8 +297,38 @@ function useMousePosition() {
   return position;
 }
 
-function MouseTracker() {
+// 使用自定义 Hook
+function MouseDisplay() {
   const position = useMousePosition();
+  
+  return (
+    <div>
+      <h3>鼠标位置</h3>
+      <p>X: {position.x}, Y: {position.y}</p>
+    </div>
+  );
+}
+
+// 另一个组件也可以使用同样的 Hook
+function MouseFollower() {
+  const position = useMousePosition();
+  
+  return (
+    <div 
+      style={{
+        position: 'fixed',
+        left: position.x + 10,
+        top: position.y + 10,
+        pointerEvents: 'none',
+        background: 'red',
+        width: 10,
+        height: 10,
+        borderRadius: '50%'
+      }}
+    />
+  );
+}
+```
   
   return (
     <p>Mouse position: {position.x}, {position.y}</p>

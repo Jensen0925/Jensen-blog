@@ -50,10 +50,19 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
       <backtotop />
     </template>
     <template #layout-top>
+      <!-- <notice /> -->
       <!-- <MouseFollower /> -->
       <MouseClick />
     </template>
-    <template #layout-bottom>
+    <!-- <template #layout-bottom>
+    </template> -->
+    <!-- <template #home-features-after>
+      <div class="home-comment-container">
+        <Twikoo></Twikoo>
+      </div>
+    </template> -->
+    <template #doc-after>
+      <Twikoo></Twikoo>
     </template>
   </DefaultTheme.Layout>
 </template>
@@ -82,5 +91,15 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 /* 修正因视图过渡导致的月牙图标偏移 */
 .VPSwitchAppearance .check .icon {
   top: -2px;
+}
+
+.home-comment-container .comment-container {
+  margin: 0 auto;
+  max-width: 1152px;
+}
+
+.twikoo .el-loading-spinner .circular {
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

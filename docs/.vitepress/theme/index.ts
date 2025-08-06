@@ -1,13 +1,13 @@
 import DefaultTheme from 'vitepress/theme'
 import { h, onMounted, watch, nextTick } from 'vue';
-import { useData, useRoute } from 'vitepress'
+import { useData, inBrowser, useRoute } from 'vitepress'
 // giscusTalk
-import giscusTalk from 'vitepress-plugin-comment-with-giscus';
+// import giscusTalk from 'vitepress-plugin-comment-with-giscus';
 // 进度条
 import { NProgress } from 'nprogress-v2/dist/index.js'
 // 样式
 import 'nprogress-v2/dist/index.css'
-// import 'virtual:group-icons.css' //代码组样式
+import 'virtual:group-icons.css' //代码组样式
 import './style/index.css' //自定义样式
 
 
@@ -29,6 +29,7 @@ import backtotop from "./components/backtotop.vue" //返回顶部
 // import notice from "./components/notice.vue" //公告
 import MouseClick from "./components/MouseClick.vue"
 import MouseFollower from "./components/MouseFollower.vue"
+import Twikoo from './components/Twikoo.vue'
 
 
 // 彩虹背景动画样式
@@ -48,7 +49,18 @@ export default {
     app.component('Linkcard', Linkcard) //链接卡片
     app.component('fluidborder', fluidborder) //流体边框仅用于演示
 
+    app.component("Twikoo", Twikoo);//Twikoo评论
 
+    if (inBrowser) {
+      NProgress.configure({ showSpinner: false })
+      router.onBeforeRouteChange = () => {
+        NProgress.start() // 开始进度条
+      }
+      router.onAfterRouteChange = () => {
+        // busuanzi.fetch()
+        NProgress.done() // 停止进度条
+      }
+    }
 
     // 彩虹背景动画样式
     if (typeof window !== 'undefined') {
@@ -97,26 +109,26 @@ export default {
     );
 
     // giscus
-    const { frontmatter } = useData();
+    // const { frontmatter } = useData();
 
     // giscus配置
-    giscusTalk({
-      repo: 'Jensen0925/Jensen-blog',
-      repoId: 'R_kgDOPW-Lvw',
-      category: 'General', // 默认: `General`
-      categoryId: 'DIC_kwDOPW-Lv84CtscO',
-      mapping: 'pathname', // 默认: `pathname`
-      inputPosition: 'bottom', // 默认: `top`
-      lang: 'zh-CN', // 默认: `zh-CN`
-      lightTheme: 'light', // 默认: `light`
-      darkTheme: 'dark', // 默认: `transparent_dark`
-      loading: 'eager',
-    },
-      {
-        frontmatter, route
-      },
-      true
-    );
+    // giscusTalk({
+    //   repo: 'Jensen0925/Jensen-blog',
+    //   repoId: 'R_kgDOPW-Lvw',
+    //   category: 'General', // 默认: `General`
+    //   categoryId: 'DIC_kwDOPW-Lv84CtscO',
+    //   mapping: 'pathname', // 默认: `pathname`
+    //   inputPosition: 'bottom', // 默认: `top`
+    //   lang: 'zh-CN', // 默认: `zh-CN`
+    //   lightTheme: 'light', // 默认: `light`
+    //   darkTheme: 'dark', // 默认: `transparent_dark`
+    //   loading: 'eager',
+    // },
+    //   {
+    //     frontmatter, route
+    //   },
+    //   true
+    // );
 
   },
 

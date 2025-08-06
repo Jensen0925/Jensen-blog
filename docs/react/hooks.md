@@ -36,7 +36,9 @@ function Counter() {
 
 #### 使用多个状态变量
 
-```jsx
+::: code-group
+
+```jsx [多个 useState]
 function UserForm() {
   const [name, setName] = useState('');
   const [age, setAge] = useState(0);
@@ -64,6 +66,46 @@ function UserForm() {
   );
 }
 ```
+
+```jsx [使用对象状态]
+function UserForm() {
+  const [user, setUser] = useState({
+    name: '',
+    age: 0,
+    email: ''
+  });
+
+  const updateUser = (field, value) => {
+    setUser(prevUser => ({
+      ...prevUser,
+      [field]: value
+    }));
+  };
+
+  return (
+    <form>
+      <input
+        value={user.name}
+        onChange={e => updateUser('name', e.target.value)}
+        placeholder="Name"
+      />
+      <input
+        type="number"
+        value={user.age}
+        onChange={e => updateUser('age', Number(e.target.value))}
+        placeholder="Age"
+      />
+      <input
+        value={user.email}
+        onChange={e => updateUser('email', e.target.value)}
+        placeholder="Email"
+      />
+    </form>
+  );
+}
+```
+
+:::
 
 #### 使用函数式更新
 
@@ -101,50 +143,6 @@ function Counter() {
 }
 ```
 
-#### 使用对象状态
-
-```jsx
-function UserProfile() {
-  const [user, setUser] = useState({
-    name: '',
-    age: 0,
-    email: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser(prevUser => ({
-      ...prevUser,
-      [name]: value
-    }));
-  };
-
-  return (
-    <form>
-      <input
-        name="name"
-        value={user.name}
-        onChange={handleChange}
-        placeholder="Name"
-      />
-      <input
-        name="age"
-        type="number"
-        value={user.age}
-        onChange={handleChange}
-        placeholder="Age"
-      />
-      <input
-        name="email"
-        value={user.email}
-        onChange={handleChange}
-        placeholder="Email"
-      />
-    </form>
-  );
-}
-```
-
 ### useEffect
 
 `useEffect` 允许你在函数组件中执行副作用操作，如数据获取、订阅或手动更改 DOM：
@@ -174,7 +172,9 @@ function Example() {
 
 #### 依赖数组
 
-```jsx
+::: code-group
+
+```jsx [有依赖]
 function Example() {
   const [count, setCount] = useState(0);
   const [name, setName] = useState('');
@@ -183,14 +183,6 @@ function Example() {
   useEffect(() => {
     document.title = `You clicked ${count} times`;
   }, [count]); // 只有当 count 改变时才会重新执行
-
-  // 只在组件挂载和卸载时执行
-  useEffect(() => {
-    console.log('Component mounted');
-    return () => {
-      console.log('Component will unmount');
-    };
-  }, []); // 空依赖数组表示只在挂载和卸载时执行
 
   return (
     <div>
@@ -207,6 +199,33 @@ function Example() {
   );
 }
 ```
+
+```jsx [空依赖数组]
+function Example() {
+  const [count, setCount] = useState(0);
+
+  // 只在组件挂载和卸载时执行
+  useEffect(() => {
+    console.log('Component mounted');
+    
+    // 清理函数
+    return () => {
+      console.log('Component will unmount');
+    };
+  }, []); // 空依赖数组表示只在挂载和卸载时执行
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+
+:::
 
 #### 清理副作用
 

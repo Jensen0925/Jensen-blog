@@ -55,6 +55,7 @@ export default {
 1. `props`：组件的 props
 2. `context`：一个包含组件上下文的对象，包含 `attrs`、`slots`、`emit` 和 `expose`
 
+
 ```vue
 <script>
 export default {
@@ -89,7 +90,8 @@ export default {
 
 `ref` 用于创建一个响应式的数据引用，它可以持有任何类型的值。
 
-```js
+```vue
+<script setup>
 import { ref } from 'vue'
 
 const count = ref(0)
@@ -98,6 +100,7 @@ const count = ref(0)
 console.log(count.value) // 0
 count.value++
 console.log(count.value) // 1
+</script>
 ```
 
 在模板中使用 `ref` 时，不需要使用 `.value`：
@@ -118,7 +121,8 @@ const count = ref(0)
 
 `reactive` 用于创建一个响应式对象，类似于 Vue 2 中的 `data` 选项。
 
-```js
+```vue
+<script setup>
 import { reactive } from 'vue'
 
 const state = reactive({
@@ -130,13 +134,15 @@ const state = reactive({
 console.log(state.count) // 0
 state.count++
 console.log(state.count) // 1
+</script>
 ```
 
 ### readonly
 
 `readonly` 用于创建一个只读的响应式对象，防止对象被修改。
 
-```js
+```vue
+<script setup>
 import { reactive, readonly } from 'vue'
 
 const original = reactive({ count: 0 })
@@ -144,6 +150,7 @@ const copy = readonly(original)
 
 original.count++ // 可以修改
 copy.count++ // 警告: Set operation on key "count" failed: target is readonly.
+</script>
 ```
 
 ### computed
