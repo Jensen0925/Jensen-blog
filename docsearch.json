@@ -2,7 +2,7 @@
     "index_name": "docs",
     "start_urls": [
         {
-            "url": "http://nonobug.top",
+            "url": "https://jensen-blog.vercel.app",
             "selectors_key": ""
         }
     ],
@@ -32,6 +32,6 @@
             "lang"
         ]
     },
-     "js_rendering": true,
+    "js_rendering": true,
     "allow_insecure": true
 }
