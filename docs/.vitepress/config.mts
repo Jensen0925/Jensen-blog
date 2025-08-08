@@ -8,8 +8,29 @@ const { rewrites } = await usePosts();
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Jensen's Blog",
-  description: "📝个人学习记录",
+  description: "📝在线笔记本",
   rewrites,
+  // 新增：基础 head 元信息（最小变更，不影响现有功能）
+  head: [
+    ['meta', { name: 'author', content: 'Jensen' }],
+    ['meta', { name: 'keywords', content: 'JavaScript, React, Vue, Node, 工程化, 前端, 博客, 笔记' }],
+    ['meta', { name: 'theme-color', content: '#646cff' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+  ],
+  // 根据页面信息动态注入 OG 元信息（放宽类型约束以兼容 VitePress 运行时）
+  transformHead: (ctx: any) => {
+    const page = ctx?.page;
+    const siteTitle = "Jensen's Blog";
+    const pageTitle = page?.title ? `${page.title} | ${siteTitle}` : siteTitle;
+    const pageDescription = page?.description || '📝在线笔记本';
+    const ogImage = '/Vlog_b.gif';
+    return [
+      ['meta', { property: 'og:title', content: pageTitle }],
+      ['meta', { property: 'og:description', content: pageDescription }],
+      ['meta', { property: 'og:type', content: 'website' }],
+      ['meta', { property: 'og:image', content: ogImage }],
+    ]
+  },
   //markdown配置
   markdown: {
     //行号显示
@@ -110,7 +131,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       {
-        text: '学习记录', items: [
+        text: '在线笔记', items: [
           {
             text: 'Front End', items: [
               { text: 'JavaScript', link: '/javascript/' },
@@ -122,8 +143,6 @@ export default defineConfig({
           {
             text: 'Back End', items: [
               { text: 'Node', link: '/node/' },
-              // { text: '数据库', link: '/database/' },
-              // { text: '其他', link: '/other/' },
             ]
           },
         ]
@@ -229,7 +248,33 @@ export default defineConfig({
             { text: '测试与部署', link: '/engineering/testing-and-deployment' }
           ]
         }
-      ]
+      ],
+      // 新增：Node 文档侧边栏
+      '/node/': [
+        {
+          text: 'Node',
+          collapsed: false,
+          items: [
+            { text: '概览', link: '/node/' },
+            { text: '基础知识', link: '/node/basics' },
+            { text: '核心模块', link: '/node/core-modules' },
+            { text: '异步编程', link: '/node/async-programming' },
+            { text: 'Express', link: '/node/express' },
+            { text: 'GraphQL', link: '/node/graphql' },
+            { text: '数据库', link: '/node/database' },
+            { text: '性能优化', link: '/node/performance' },
+            { text: '监控与日志', link: '/node/monitoring' },
+            { text: '安全', link: '/node/security' },
+            { text: '测试', link: '/node/testing' },
+            { text: '部署', link: '/node/deployment' },
+            { text: '微服务', link: '/node/microservices' },
+            { text: 'WebSocket', link: '/node/websocket' },
+            { text: '包管理', link: '/node/package-management' },
+            { text: '故障排查', link: '/node/troubleshooting' },
+            { text: 'NestJS', link: '/node/nestjs' },
+          ]
+        }
+      ],
     },
 
     socialLinks: [

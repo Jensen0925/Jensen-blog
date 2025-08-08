@@ -45,7 +45,7 @@ export const usePosts = async ({
   srcDir = 'permalink',  // 默认源目录为'permalink'
   baseDir = 'docs'   // 默认基础目录为'docs'
 } = {}) => {
-  const rewrites = {}; // 初始化重写规则对象
+  const rewrites: Record<string, string> = {}; // 初始化重写规则对象
 
   try {
     // 使用fast-glob查找所有匹配的Markdown文件，但忽略index.md文件

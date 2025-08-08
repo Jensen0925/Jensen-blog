@@ -1,5 +1,5 @@
 {
-  "name": "Jensen-blog",
+  "name": "jensen-blog",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -16,6 +16,7 @@
   "packageManager": "pnpm@10.6.4",
   "devDependencies": {
     "@mdit-vue/shared": "^2.1.4",
+    "@types/node": "^24.2.0",
     "canvas-confetti": "^1.9.3",
     "fast-glob": "^3.3.3",
     "gray-matter": "^4.0.3",
