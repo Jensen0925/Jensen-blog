@@ -135,6 +135,7 @@ export default defineConfig({
           {
             text: 'Front End', items: [
               { text: 'JavaScript', link: '/javascript/' },
+              { text: 'TypeScript', link: '/typescript/' },
               { text: 'React', link: '/react/' },
               { text: 'Vue', link: '/vue/' },
               { text: '工程化', link: '/engineering/' },
@@ -246,6 +247,22 @@ export default defineConfig({
             { text: '构建工具', link: '/engineering/build-tools' },
             { text: '性能优化', link: '/engineering/performance' },
             { text: '测试与部署', link: '/engineering/testing-and-deployment' }
+          ]
+        }
+      ],
+      '/typescript/': [
+        {
+          text: 'TypeScript',
+          collapsed: false,
+          items: [
+            { text: '学习指南', link: '/typescript/' },
+            { text: '基础语法', link: '/typescript/basics' },
+            { text: '类型系统', link: '/typescript/types' },
+            { text: '接口与类', link: '/typescript/interfaces-classes' },
+            { text: '泛型编程', link: '/typescript/generics' },
+            { text: '高级特性', link: '/typescript/advanced' },
+            { text: '编译器与配置', link: '/typescript/compiler' },
+            { text: '实战项目', link: '/typescript/projects' }
           ]
         }
       ],

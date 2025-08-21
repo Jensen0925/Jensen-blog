@@ -7,7 +7,6 @@ const { page } = useData()
 const date = computed(
     () => new Date(page.value.lastUpdated!)
 )
-console.log('date: ', date);
 
 const wordCount = ref(0)
 const imageCount = ref(0)
