@@ -10,6 +10,7 @@ export default defineConfig({
   title: "Jensen's Blog",
   description: "📝在线笔记本",
   rewrites,
+  ignoreDeadLinks: true,
   // 新增：基础 head 元信息（最小变更，不影响现有功能）
   head: [
     ['meta', { name: 'author', content: 'Jensen' }],
