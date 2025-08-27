@@ -247,7 +247,8 @@ export default defineConfig({
             { text: '基础知识', link: '/engineering/basics' },
             { text: '构建工具', link: '/engineering/build-tools' },
             { text: '性能优化', link: '/engineering/performance' },
-            { text: '测试与部署', link: '/engineering/testing-and-deployment' }
+            { text: '测试与部署', link: '/engineering/testing-and-deployment' },
+            { text: 'ESLint 工程实践', link: '/engineering/eslint' }
           ]
         }
       ],
