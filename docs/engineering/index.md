@@ -6,9 +6,20 @@
 
 在这个部分，你将学习前端工程化的核心概念和实践技巧：
 
+### 基础与架构
 - [基础知识](/engineering/basics) - 模块化、包管理、构建工具、CI/CD等
+- [Monorepo 架构](/engineering/monorepo) - pnpm workspace、Turborepo、依赖管理、版本管理
+
+### 开发规范
+- [Git 工作流与代码规范](/engineering/git-workflow) - Git Flow、Commit 规范、Code Review、Git Hooks
+
+### 构建与优化
 - [构建工具](/engineering/build-tools) - Webpack、Rollup、Vite、Parcel、Gulp等
+- [插件的本质](/engineering/plugins) - Vite、Webpack、Rollup、Babel、ESLint等插件机制
 - [性能优化](/engineering/performance) - 网络优化、渲染优化、JavaScript优化等
+
+### 质量保障
+- [ESLint 工程实践](/engineering/eslint) - 配置、规则、插件开发
 - [测试与部署](/engineering/testing-and-deployment) - 单元测试、集成测试、部署策略等
 
 ## 为什么需要前端工程化？
@@ -19,5 +30,6 @@
 - **保证代码质量** - 代码规范、自动化测试、代码审查等
 - **优化用户体验** - 性能优化、兼容性处理、渐进式增强等
 - **降低维护成本** - 模块化开发、组件化开发、文档自动化等
+- **团队协作** - 统一的开发流程和规范
 
 掌握前端工程化知识，不仅能够提升个人技术能力，还能在团队协作中发挥更大的价值，是现代前端开发者必备的技能。

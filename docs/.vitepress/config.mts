@@ -205,18 +205,26 @@ export default defineConfig({
     sidebar: {
       '/javascript/': [
         {
-          text: 'JavaScript',
+          text: 'JavaScript 基础',
           collapsed: false,
           items: [
-            { text: '基础知识', link: '/javascript/basics' },
-            { text: '进阶概念', link: '/javascript/advanced' },
-            { text: 'ES6+特性', link: '/javascript/es6' }
+            { text: 'JavaScript 基础', link: '/javascript/basics' },
+            { text: 'ES6+ 特性', link: '/javascript/es6' }
+          ]
+        },
+        {
+          text: 'JavaScript 核心',
+          collapsed: false,
+          items: [
+            { text: '异步编程', link: '/javascript/async-programming' },
+            { text: '原型与继承', link: '/javascript/prototype' },
+            { text: '进阶概念', link: '/javascript/advanced' }
           ]
         }
       ],
       '/react/': [
         {
-          text: 'React',
+          text: 'React 基础',
           collapsed: false,
           items: [
             { text: '入门指南', link: '/react/getting-started' },
@@ -225,30 +233,99 @@ export default defineConfig({
             { text: 'React 18 新特性', link: '/react/react-18' },
             { text: 'React 19 新特性', link: '/react/react-19' }
           ]
+        },
+        {
+          text: 'React 源码与原理',
+          collapsed: false,
+          items: [
+            { text: 'Fiber 原理', link: '/react/fiber' },
+            { text: 'Diff 算法', link: '/react/diff-algorithm' },
+            { text: 'Reconciler 协调器', link: '/react/reconciler' },
+            { text: 'Scheduler 调度器', link: '/react/scheduler' },
+            { text: '状态管理原理', link: '/react/state-management' },
+            { text: '事件系统原理', link: '/react/events' }
+          ]
+        },
+        {
+          text: '性能与优化',
+          collapsed: false,
+          items: [
+            { text: '性能优化完全指南', link: '/react/performance' }
+          ]
+        },
+        {
+          text: '进阶特性',
+          collapsed: false,
+          items: [
+            { text: 'Context 深入解析', link: '/react/context' },
+            { text: 'React 设计模式', link: '/react/patterns' },
+            { text: 'Suspense 和异步渲染', link: '/react/suspense' },
+            { text: '自定义 Hooks 最佳实践', link: '/react/custom-hooks' },
+            { text: '错误处理与边界', link: '/react/error-boundaries' },
+            { text: '服务端渲染（SSR）', link: '/react/ssr' }
+          ]
         }
       ],
       '/vue/': [
         {
-          text: 'Vue',
+          text: 'Vue 核心实践',
           collapsed: false,
           items: [
-            { text: '入门指南', link: '/vue/getting-started' },
-            { text: '组件开发', link: '/vue/components' },
-            { text: '组合式API', link: '/vue/composition-api' },
-            { text: 'Vue 3.6 新特性', link: '/vue/vue-3-6' }
+            { text: '学习指南', link: '/vue/' },
+            { text: 'Composition API 最佳实践', link: '/vue/composition-best-practices' }
+          ]
+        },
+        {
+          text: 'Vue 源码原理',
+          collapsed: false,
+          items: [
+            { text: 'Vue 3 响应式系统', link: '/vue/reactivity-system' },
+            { text: 'ref 底层原理', link: '/vue/ref-internals' },
+            { text: 'Vue 2 vs Vue 3 响应式', link: '/vue/reactivity-comparison' },
+            { text: 'Diff 算法原理', link: '/vue/diff-algorithm' },
+            { text: 'Vue 3 编译器', link: '/vue/compiler' }
+          ]
+        },
+        {
+          text: 'Vue 新特性',
+          collapsed: false,
+          items: [
+            { text: 'Vue 3.6 新特性', link: '/vue/vue-3-6' },
+            { text: 'Vue Vine', link: '/vue/vue-vine' }
           ]
         }
       ],
       '/engineering/': [
         {
-          text: '工程化',
+          text: '基础与架构',
           collapsed: false,
           items: [
             { text: '基础知识', link: '/engineering/basics' },
+            { text: 'Monorepo 架构', link: '/engineering/monorepo' }
+          ]
+        },
+        {
+          text: '开发规范',
+          collapsed: false,
+          items: [
+            { text: 'Git 工作流与代码规范', link: '/engineering/git-workflow' }
+          ]
+        },
+        {
+          text: '构建与优化',
+          collapsed: false,
+          items: [
             { text: '构建工具', link: '/engineering/build-tools' },
-            { text: '性能优化', link: '/engineering/performance' },
-            { text: '测试与部署', link: '/engineering/testing-and-deployment' },
-            { text: 'ESLint 工程实践', link: '/engineering/eslint' }
+            { text: '插件机制', link: '/engineering/plugins' },
+            { text: '性能优化', link: '/engineering/performance' }
+          ]
+        },
+        {
+          text: '质量保障',
+          collapsed: false,
+          items: [
+            { text: 'ESLint 工程实践', link: '/engineering/eslint' },
+            { text: '测试与部署', link: '/engineering/testing-and-deployment' }
           ]
         }
       ],
@@ -258,39 +335,68 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: '学习指南', link: '/typescript/' },
-            { text: '基础语法', link: '/typescript/basics' },
-            { text: '类型系统', link: '/typescript/types' },
-            { text: '接口与类', link: '/typescript/interfaces-classes' },
-            { text: '泛型编程', link: '/typescript/generics' },
-            { text: '高级特性', link: '/typescript/advanced' },
-            { text: '编译器与配置', link: '/typescript/compiler' },
-            { text: '实战项目', link: '/typescript/projects' }
+            { text: '安装与配置', link: '/typescript/setup' },
+            { text: '基础类型', link: '/typescript/basic-types' },
+            { text: '接口', link: '/typescript/interface' },
+            { text: '高级类型', link: '/typescript/advanced-types' },
+            { text: '泛型', link: '/typescript/generic' },
+            { text: '类型守护', link: '/typescript/type-guards' },
+            { text: '类型操控与校验', link: '/typescript/type-manipulation' },
+            { text: '装饰器', link: '/typescript/decorators' },
           ]
         }
       ],
-      // 新增：Node 文档侧边栏
       '/node/': [
         {
-          text: 'Node',
+          text: '基础入门',
           collapsed: false,
           items: [
-            { text: '概览', link: '/node/' },
-            { text: '基础知识', link: '/node/basics' },
+            { text: '学习指南', link: '/node/' },
+            { text: 'Node.js 基础', link: '/node/basics' },
             { text: '核心模块', link: '/node/core-modules' },
-            { text: '异步编程', link: '/node/async-programming' },
-            { text: 'Express', link: '/node/express' },
-            { text: 'GraphQL', link: '/node/graphql' },
-            { text: '数据库', link: '/node/database' },
-            { text: '性能优化', link: '/node/performance' },
-            { text: '监控与日志', link: '/node/monitoring' },
-            { text: '安全', link: '/node/security' },
-            { text: '测试', link: '/node/testing' },
-            { text: '部署', link: '/node/deployment' },
-            { text: '微服务', link: '/node/microservices' },
-            { text: 'WebSocket', link: '/node/websocket' },
             { text: '包管理', link: '/node/package-management' },
-            { text: '故障排查', link: '/node/troubleshooting' },
-            { text: 'NestJS', link: '/node/nestjs' },
+            { text: '异步编程', link: '/node/async-programming' }
+          ]
+        },
+        {
+          text: '核心原理',
+          collapsed: false,
+          items: [
+            { text: '事件循环', link: '/node/event-loop' },
+            { text: 'Stream 流', link: '/node/stream' },
+            { text: 'Buffer 和二进制', link: '/node/buffer' },
+            { text: 'Process 和线程', link: '/node/process' }
+          ]
+        },
+        {
+          text: 'Web 开发',
+          collapsed: false,
+          items: [
+            { text: 'Express 框架', link: '/node/express' },
+            { text: 'NestJS 框架', link: '/node/nestjs' },
+            { text: '数据库操作', link: '/node/database' },
+            { text: 'WebSocket', link: '/node/websocket' },
+            { text: 'GraphQL', link: '/node/graphql' }
+          ]
+        },
+        {
+          text: '架构设计',
+          collapsed: false,
+          items: [
+            { text: '微服务架构', link: '/node/microservices' },
+            { text: '错误处理', link: '/node/error-handling' },
+            { text: '安全最佳实践', link: '/node/security' }
+          ]
+        },
+        {
+          text: '性能与运维',
+          collapsed: false,
+          items: [
+            { text: '性能优化', link: '/node/performance' },
+            { text: '测试', link: '/node/testing' },
+            { text: '监控与日志', link: '/node/monitoring' },
+            { text: '部署', link: '/node/deployment' },
+            { text: '故障排查', link: '/node/troubleshooting' }
           ]
         }
       ],
