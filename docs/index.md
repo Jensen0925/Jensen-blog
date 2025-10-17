@@ -14,9 +14,7 @@ hero:
     - theme: brand
       text: 开始阅读
       link: /javascript/basics
-    - theme: alt
-      text: 关于我
-      link: /about
+ 
 
 features:
   - icon: 🚀
